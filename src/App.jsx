@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import WelcomeScreen from './components/WelcomeScreen';
 import InvitationScreen from './components/InvitationScreen';
 import Dashboard from './components/Dashboard';
@@ -38,7 +38,7 @@ function App() {
   };
 
   // Tecla de acceso rápido: presiona 'd' y '.' para abrir el prompt de contraseña
-  React.useEffect(() => {
+  useEffect(() => {
     let keySequence = '';
     const handleKeyPress = (e) => {
       keySequence += e.key.toLowerCase();
