@@ -16,18 +16,25 @@ const RSVP = ({ guestName }) => {
         setError(null);
 
         try {
-            // Guardar en Firestore
-            await addDoc(collection(db, 'confirmaciones'), {
+            // Establecer un timeout de 10 segundos
+            const timeoutPromise = new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('La solicitud tardó demasiado. Por favor intenta de nuevo.')), 10000)
+            );
+
+            const savePromise = addDoc(collection(db, 'confirmaciones'), {
                 nombre: guestName,
                 estado: status === 'attending' ? 'asistira' : 'no_asistira',
                 acompanantes: status === 'attending' ? parseInt(guests) : 0,
                 timestamp: serverTimestamp(),
             });
 
+            // Ejecutar con timeout
+            await Promise.race([savePromise, timeoutPromise]);
+
             setSubmitted(true);
         } catch (err) {
             console.error('Error al guardar:', err);
-            setError('Error al guardar tu respuesta. Intenta de nuevo.');
+            setError('Error al guardar tu respuesta. Intenta de nuevo o contacta a los novios.');
             setLoading(false);
         }
     };
