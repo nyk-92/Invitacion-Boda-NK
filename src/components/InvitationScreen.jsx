@@ -137,7 +137,7 @@ const InvitationScreen = ({ guestName }) => {
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
                     >
-                        Kelly Jhoana Castro Causil
+                        Neisdel Izquierdo Romero
                     </motion.h2>
                     <motion.span
                         className="ampersand"
@@ -155,7 +155,7 @@ const InvitationScreen = ({ guestName }) => {
                         transition={{ duration: 0.8, delay: 0.3 }}
                         viewport={{ once: true }}
                     >
-                        Neisdel Izquierdo Romero
+                        Kelly Jhoana Castro Causil
                     </motion.h2>
                 </section>
             </ScrollReveal>
