@@ -118,23 +118,31 @@ const Dashboard = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {filtradas.map((conf) => (
-                            <tr key={conf.id} className={conf.estado}>
-                                <td>{conf.nombre}</td>
-                                <td>
-                                    <span className={`badge ${conf.estado}`}>
-                                        {conf.estado === 'asistira' ? '✓ Asistirá' : '✗ No asistirá'}
-                                    </span>
-                                </td>
-                                <td>{conf.acompanantes || 0}</td>
-                                <td>
-                                    {conf.timestamp 
-                                        ? new Date(conf.timestamp.toDate()).toLocaleDateString() 
-                                        : 'N/A'
-                                    }
-                                </td>
-                            </tr>
-                        ))}
+                        {filtradas.map((conf) => {
+                            let fechaFormato = 'N/A';
+                            if (conf.timestamp) {
+                                try {
+                                    // Manejar tanto Timestamp de Firebase como Date
+                                    const fecha = conf.timestamp.toDate ? conf.timestamp.toDate() : new Date(conf.timestamp);
+                                    fechaFormato = fecha.toLocaleDateString('es-ES');
+                                } catch (e) {
+                                    fechaFormato = 'N/A';
+                                }
+                            }
+                            
+                            return (
+                                <tr key={conf.id} className={conf.estado}>
+                                    <td>{conf.nombre || 'N/A'}</td>
+                                    <td>
+                                        <span className={`badge ${conf.estado}`}>
+                                            {conf.estado === 'asistira' ? '✓ Asistirá' : '✗ No asistirá'}
+                                        </span>
+                                    </td>
+                                    <td>{conf.acompanantes || 0}</td>
+                                    <td>{fechaFormato}</td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>
