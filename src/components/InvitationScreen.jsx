@@ -54,7 +54,7 @@ const InvitationScreen = ({ guestName }) => {
         seconds: 0
     });
 
-    const weddingDate = new Date('2026-06-27T15:00:00');
+    const weddingDate = new Date('2026-06-27T18:00:00');
 
     useEffect(() => {
         const calculateTimeLeft = () => {
@@ -186,7 +186,7 @@ const InvitationScreen = ({ guestName }) => {
                         whileHover={{ y: -10 }}
                     >
                         <h3>Hora</h3>
-                        <p className="detail-value">3:00 PM</p>
+                        <p className="detail-value">6:00 PM</p>
                     </motion.div>
                 </section>
             </ScrollReveal>
