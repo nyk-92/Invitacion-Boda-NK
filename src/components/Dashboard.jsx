@@ -125,7 +125,7 @@ const Dashboard = () => {
                                     // Manejar tanto Timestamp de Firebase como Date
                                     const fecha = conf.timestamp.toDate ? conf.timestamp.toDate() : new Date(conf.timestamp);
                                     fechaFormato = fecha.toLocaleDateString('es-ES');
-                                } catch {
+                                } catch (e) {
                                     fechaFormato = 'N/A';
                                 }
                             }

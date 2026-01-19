@@ -1,0 +1,88 @@
+.background-effects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.petals-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.petal {
+  position: absolute;
+  animation: fall linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes fall {
+  0% {
+    top: -50px;
+    transform: translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateX(20px) rotate(180deg);
+  }
+  100% {
+    top: calc(100vh + 50px);
+    transform: translateX(40px) rotate(360deg);
+  }
+}
+
+.light-rays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ray {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100vh;
+  background: linear-gradient(to bottom, rgba(212, 175, 55, 0.3) 0%, transparent 100%);
+  animation: ray-pulse 4s ease-in-out infinite;
+}
+
+.ray-1 {
+  left: 15%;
+  transform: rotate(2deg);
+  animation-delay: 0s;
+}
+
+.ray-2 {
+  left: 35%;
+  transform: rotate(-1deg);
+  animation-delay: 1s;
+}
+
+.ray-3 {
+  left: 65%;
+  transform: rotate(3deg);
+  animation-delay: 2s;
+}
+
+.ray-4 {
+  left: 85%;
+  transform: rotate(-2deg);
+  animation-delay: 3s;
+}
+
+@keyframes ray-pulse {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}

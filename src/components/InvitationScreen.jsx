@@ -131,7 +131,7 @@ const InvitationScreen = ({ guestName }) => {
             <ScrollReveal delay={0.3}>
                 <section className="couple-names">
                     <motion.h2
-                        className="bride-name shimmer-text"
+                        className="groom-name shimmer-text"
                         whileInView={{ opacity: 1, x: 0 }}
                         initial={{ opacity: 0, x: -30 }}
                         transition={{ duration: 0.8 }}
@@ -149,7 +149,7 @@ const InvitationScreen = ({ guestName }) => {
                         &
                     </motion.span>
                     <motion.h2
-                        className="groom-name shimmer-text"
+                        className="bride-name shimmer-text"
                         whileInView={{ opacity: 1, x: 0 }}
                         initial={{ opacity: 0, x: 30 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
