@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { db } from '../firebase';
-import { collection, query, onSnapshot, orderBy } from 'firebase/firestore';
+import { collection, query, onSnapshot, orderBy, deleteDoc, doc } from 'firebase/firestore';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -22,6 +22,17 @@ const Dashboard = () => {
 
         return () => unsubscribe();
     }, []);
+
+    const handleDelete = async (id, nombre) => {
+        if (window.confirm(`¿Estás seguro de que quieres eliminar la confirmación de "${nombre}"?`)) {
+            try {
+                await deleteDoc(doc(db, 'confirmaciones', id));
+            } catch (error) {
+                console.error("Error al eliminar:", error);
+                alert("Hubo un error al intentar eliminar el registro.");
+            }
+        }
+    };
 
     const filtradas = confirmaciones.filter(c => {
         if (filter === 'all') return true;
@@ -124,6 +135,7 @@ const Dashboard = () => {
                             <th>Estado</th>
                             <th>Acompañantes</th>
                             <th>Fecha de Confirmación</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -149,6 +161,15 @@ const Dashboard = () => {
                                     </td>
                                     <td>{conf.acompanantes || 0}</td>
                                     <td>{fechaFormato}</td>
+                                    <td>
+                                        <button 
+                                            className="delete-btn" 
+                                            onClick={() => handleDelete(conf.id, conf.nombre)}
+                                            title="Eliminar registro"
+                                        >
+                                            🗑️
+                                        </button>
+                                    </td>
                                 </tr>
                             );
                         })}
